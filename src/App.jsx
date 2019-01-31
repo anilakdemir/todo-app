@@ -1,5 +1,7 @@
 import React from 'react';
 import _ from 'lodash';
+import { Grid, Segment } from 'semantic-ui-react';
+import TodoList from './Components/TodoList/ToDoList';
 
 class App extends React.Component {
   constructor() {
@@ -36,14 +38,8 @@ class App extends React.Component {
     // get a copy of the todos array from state
     const { todos } = this.state;
 
-    // find the index of todo which is wanted to be deleted
-    const index = todos.findIndex(todo => todo.id === id);
-
-    // if index can't be found then do nothing
-    if (!Number.isInteger(index) || !(index >= 0)) return;
-
     // delete todo
-    delete todos[index];
+    _.remove(todos, todo => todo.id === id);
 
     // set state with new todos array
     this.setState({
@@ -81,8 +77,21 @@ class App extends React.Component {
 
 
   render() {
+    const { todos } = this.state;
     return (
-      <div className="App" />
+      <div className="App">
+        <Grid centered columns="2">
+          <Grid.Column>
+            <Segment raised stacked>
+              <TodoList
+                todos={todos}
+                onRemove={this.removeToDo}
+                onUpdate={this.updateToDo}
+              />
+            </Segment>
+          </Grid.Column>
+        </Grid>
+      </div>
     );
   }
 }

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
   List,
   Container,
@@ -7,9 +8,17 @@ import TodoListItem from './ToDoListItem';
 
 
 class TodoList extends React.Component {
-  renderList = todos => todos.map(todo => (
-    <TodoListItem key={todo.id} todo={todo} onRemove={this.props.onRemove} onUpdate={this.props.onUpdate} />
-  ));
+  renderList = todos => todos.map((todo) => {
+    // destructure props
+    const {
+      onRemove,
+      onUpdate,
+    } = this.props;
+
+    return (
+      <TodoListItem key={todo.id} todo={todo} onRemove={onRemove} onUpdate={onUpdate} />
+    );
+  });
 
   renderEmptyList = () => (
     <Container textAlign="center">
@@ -30,5 +39,11 @@ class TodoList extends React.Component {
     );
   }
 }
+
+TodoList.propTypes = {
+  todos: PropTypes.instanceOf(Array).isRequired,
+  onRemove: PropTypes.func.isRequired,
+  onUpdate: PropTypes.func.isRequired,
+};
 
 export default TodoList;

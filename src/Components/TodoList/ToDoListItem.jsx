@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
   List,
   Button,
@@ -7,16 +8,21 @@ import {
 
 class TodoListItem extends React.Component {
   onRemove = () => {
-    const { onRemove } = this.props;
-    const { id } = this.props.todo;
+    // destructure props
+    const {
+      onRemove,
+      todo: { id },
+    } = this.props;
 
     // remove todo item from state
     onRemove(id);
   };
 
   onUpdate = () => {
-    const { onUpdate } = this.props;
-    const { todo } = this.props;
+    const {
+      onUpdate,
+      todo,
+    } = this.props;
 
     // change done status
     todo.done = !todo.done;
@@ -29,7 +35,6 @@ class TodoListItem extends React.Component {
     // TODO: add react/prop-types to project
     const { todo } = this.props; // eslint-disable-line react/prop-types
 
-
     return (
       <List.Item key={todo.id} index={todo.id}>
         <List.Content>{todo.text}</List.Content>
@@ -41,5 +46,11 @@ class TodoListItem extends React.Component {
     );
   }
 }
+
+TodoListItem.propTypes = {
+  todo: PropTypes.instanceOf(Array).isRequired,
+  onRemove: PropTypes.func.isRequired,
+  onUpdate: PropTypes.func.isRequired,
+};
 
 export default TodoListItem;

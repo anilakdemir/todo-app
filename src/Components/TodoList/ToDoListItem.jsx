@@ -32,15 +32,48 @@ class TodoListItem extends React.Component {
   };
 
   render() {
-    // TODO: add react/prop-types to project
-    const { todo } = this.props; // eslint-disable-line react/prop-types
+    // get todo object from props
+    const { todo } = this.props;
+
+    // Style object for todo status
+    const Style = {
+      text: {
+        completed: {
+          textDecoration: 'line-through',
+        },
+        active: {
+          textDecoration: 'none',
+        },
+      },
+      button: {
+        completed: 'google plus',
+        active: 'green',
+      },
+    };
 
     return (
       <List.Item key={todo.id} index={todo.id}>
-        <List.Content>{todo.text}</List.Content>
-        <List.Content floated="right">
-          <Button onClick={this.onUpdate} circular color="green">Done</Button>
-          <Button onClick={this.onRemove} circular color="google plus">-</Button>
+        <List.Content
+          style={todo.done ? Style.text.completed : Style.text.active}
+        >
+          {todo.text}
+          <Button
+            floated="right"
+            onClick={this.onRemove}
+            circular
+            color="google plus"
+          >
+            -
+          </Button>
+          <Button
+            floated="right"
+            circular
+            onClick={this.onUpdate}
+            color={todo.done ? Style.button.completed : Style.button.active}
+          >
+            {todo.done ? 'Undone' : 'Done'}
+          </Button>
+
         </List.Content>
       </List.Item>
     );
@@ -48,7 +81,7 @@ class TodoListItem extends React.Component {
 }
 
 TodoListItem.propTypes = {
-  todo: PropTypes.instanceOf(Array).isRequired,
+  todo: PropTypes.instanceOf(Object).isRequired,
   onRemove: PropTypes.func.isRequired,
   onUpdate: PropTypes.func.isRequired,
 };

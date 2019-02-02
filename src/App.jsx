@@ -2,6 +2,7 @@ import React from 'react';
 import _ from 'lodash';
 import { Grid, Segment } from 'semantic-ui-react';
 import TodoList from './Components/TodoList/ToDoList';
+import AddToDoForm from './Components/AddToDoForm/AddToDoForm';
 
 class App extends React.Component {
   constructor() {
@@ -82,7 +83,10 @@ class App extends React.Component {
       <div className="App">
         <Grid centered columns="2">
           <Grid.Column>
-            <Segment raised stacked>
+            <Segment attached="top">
+              <AddToDoForm addToDo={this.addToDo} />
+            </Segment>
+            <Segment raised stacked attached="bottom">
               <TodoList
                 todos={todos}
                 onRemove={this.removeToDo}

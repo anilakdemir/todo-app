@@ -7,6 +7,16 @@
         "es6":true
     },
     "rules":{
-        "no-unused-vars": ["error", { "vars": "all", "args": "after-used", "ignoreRestSiblings": false }]
+        "max-len":["error", 120],
+        "comma-dangle": ["error", "always-multiline"],
+        "no-unused-vars": ["error", { "vars": "all", "args": "after-used", "ignoreRestSiblings": false }],
+        "no-param-reassign": ["error", { "props": false }],
+        "object-curly-newline": ["error", {
+            "ObjectExpression": "always",
+            "ObjectPattern": {"multiline": true}
+        }],
+        "object-property-newline": ["error", {
+            "allowAllPropertiesOnSameLine": false
+        }]
     }
 }

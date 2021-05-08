@@ -4,7 +4,7 @@
   "private": true,
   "homepage": "anilakdemir.github.io/todo-app",
   "dependencies": {
-    "lodash": "^4.17.5",
+    "lodash": "^4.17.21",
     "prop-types": "^15.6.2",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",

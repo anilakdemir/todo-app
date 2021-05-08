@@ -2,6 +2,7 @@
   "name": "todo-app",
   "version": "0.1.0",
   "private": true,
+  "homepage": "anilakdemir.github.io/todo-app",
   "dependencies": {
     "lodash": "^4.17.5",
     "prop-types": "^15.6.2",
